@@ -181,7 +181,7 @@ if __name__ == "__main__":
             site = query.replace("open", "").strip()
             webbrowser.open(f"https://{site}.com")
         elif 'play music' in query:
-            music_file = r"C:\Users\acer\Videos\nihita.aac"  # Path to the specific music file
+            music_file = r"C:\Users\acer\Downloads\One Direction - Drag Me Down Lyrical status #shorts.mp3"  # Path to the specific music file
             try:
                 if os.path.exists(music_file):
                     os.startfile(music_file)
