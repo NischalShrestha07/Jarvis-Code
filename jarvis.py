@@ -8,14 +8,24 @@ import random
 import requests
 import os
 import smtplib
+from gtts import gTTS
+
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
+# def speak(audio):
+#     engine.say(audio)
+#     engine.runAndWait()
+
 def speak(audio):
+    engine.setProperty('voice', voices[0].id)  # Select a suitable voice
+    engine.setProperty('rate', 200)  # Increase the speed for a robotic effect
+    engine.setProperty('volume', 1.0)  # Set maximum volume for clarity
     engine.say(audio)
     engine.runAndWait()
+
 
 def tellJoke():
     joke = pyjokes.get_joke()
@@ -91,14 +101,30 @@ def takeCommand():
             print(f"Request Error: {e}")
     return "None"
 
+# def sendEmail(to, content):
+#     try:
+#         server = smtplib.SMTP('smtp.gmail.com', 587)
+#         server.starttls()
+#         server.login('youremail@gmail.com', 'your-password')  # Replace with your credentials
+#         server.sendmail('youremail@gmail.com', to, content)
+#         server.close()
+#         speak("Email has been sent!")
+#     except Exception as e:
+#         print(f"Error: {e}")
+#         speak("Sorry, I couldn't send the email.")
+
+
 def sendEmail(to, content):
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
-        server.login('youremail@gmail.com', 'your-password')  # Replace with your credentials
-        server.sendmail('youremail@gmail.com', to, content)
+        server.login('hello@gmail.com', 'hello')  # Replace with your Gmail and App Password
+        server.sendmail('mama@gmail.com', to, content)
         server.close()
         speak("Email has been sent!")
+    except smtplib.SMTPAuthenticationError:
+        print("Error: Authentication failed. Check your email or password.")
+        speak("Authentication failed. Please check your email credentials.")
     except Exception as e:
         print(f"Error: {e}")
         speak("Sorry, I couldn't send the email.")
