@@ -73,6 +73,7 @@ def takeCommand():
             print("Timeout. No input detected.")
         except sr.UnknownValueError:
             print("Could not understand the audio.")
+            speak('Could not understand the audio. Try Again')
         except sr.RequestError as e:
             print(f"Request Error: {e}")
     return "None"
@@ -87,9 +88,10 @@ def searchGoogle(query):
     """Searches Google for the given query."""
     query = query.replace("search", "").strip()
     webbrowser.open(f"https://www.google.com/search?q={query}")
-
+    speak('Search Successfully Completed')
 def playMusic():
     """Plays a music file from a specified directory."""
+    speak('Playing Music')
     music_file = r"C:\\Users\\acer\\Downloads\\One Direction - Drag Me Down Lyrical status #shorts.mp3"  # Specify your file path
     try:
         if os.path.exists(music_file):
