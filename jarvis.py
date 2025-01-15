@@ -11,6 +11,7 @@ import smtplib
 from gtts import gTTS
 
 
+
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
@@ -101,18 +102,6 @@ def takeCommand():
             print(f"Request Error: {e}")
     return "None"
 
-# def sendEmail(to, content):
-#     try:
-#         server = smtplib.SMTP('smtp.gmail.com', 587)
-#         server.starttls()
-#         server.login('youremail@gmail.com', 'your-password')  # Replace with your credentials
-#         server.sendmail('youremail@gmail.com', to, content)
-#         server.close()
-#         speak("Email has been sent!")
-#     except Exception as e:
-#         print(f"Error: {e}")
-#         speak("Sorry, I couldn't send the email.")
-
 
 def sendEmail(to, content):
     try:
@@ -190,15 +179,6 @@ if __name__ == "__main__":
             except Exception as e:
                 print(f"Error: {e}")
                 speak("An error occurred while trying to play the music.")
-
-        # elif 'play music' in query:
-        #     music_dir = r"C:\Users\acer\Videos\nihita.aac"  # Use raw string
-        #     try:
-        #         songs = os.listdir(music_dir)
-        #         os.startfile(os.path.join(music_dir, songs[0]))
-        #     except FileNotFoundError:
-        #         speak("Sorry, I couldn't find the music directory.")
-        
 
         
         elif 'the time' in query:
