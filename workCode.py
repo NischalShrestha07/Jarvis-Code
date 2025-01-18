@@ -36,6 +36,21 @@ def aboutNepal():
     print(info)
     speak(info)
 
+def aboutRajey():
+    """Provides information about Nepal."""
+    info = (
+     "Rajendra Lingden is a prominent Nepali politician and the president of the Rastriya Prajatantra Party RPP a right, "
+        "wing political party in Nepal. Lingden known for his advocacy of constitutional monarchy and Hindu statehood has played a key role in shaping the partys  "
+        "direction He is also a  Member of Parliament brepresenting Jhapa Constituency No 3 in the House of , "
+        "Representatives Lingdens leadership has been marked by efforts to unify conservative forces and"
+        "revive traditional values in Nepal's political landscape. He has gained  "
+        "popularity for his straight forward rhetoric and strong stance on issues like national "
+        "sovereignty identity and  "
+        "cultural preservation"
+    )
+    print(info)
+    speak(info)
+
 def wishMe():
     """Greets the user based on the time of day."""
     hour = int(datetime.datetime.now().hour)
@@ -62,12 +77,15 @@ def takeCommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
+        speak("Listening...")
         r.pause_threshold = 1
         try:
             audio = r.listen(source, timeout=5, phrase_time_limit=10)
             print("Recognizing...")
+            speak("Recognizing...")
             query = r.recognize_google(audio, language='en-in')
             print(f"User said: {query}\n")
+            speak(f"User said: {query}\n")
             return query
         except sr.WaitTimeoutError:
             print("Timeout. No input detected.")
@@ -269,6 +287,9 @@ if __name__ == "__main__":
 
         elif 'nepal' in query:
             aboutNepal()
+        
+        elif 'rajendra' in query:
+            aboutRajey()
 
         elif 'fact' in query:
             randomFact()
