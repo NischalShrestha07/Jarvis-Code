@@ -24,14 +24,14 @@ def speak(audio):
 def aboutNepal():
     """Provides information about Nepal."""
     info = (
-        "Rajendra Lingden is a prominent Nepali politician and the president of the Rastriya Prajatantra Party RPP a right, "
-        "wing political party in Nepal. Lingden known for his advocacy of constitutional monarchy and Hindu statehood has played a key role in shaping the partys  "
-        "direction He is also a  Member of Parliament brepresenting Jhapa Constituency No 3 in the House of , "
-        "Representatives Lingdens leadership has been marked by efforts to unify conservative forces and"
-        "revive traditional values in Nepal's political landscape. He has gained  "
-        "popularity for his straightforward rhetoric and strong stance on issues like national "
-        "sovereignty identity and  "
-        "culturalpreservation"
+        "Nepal is a beautiful landlocked country located in South Asia, "
+        "bordered by China to the north and India to the south, east, and west. "
+        "It is known for its stunning Himalayan mountain range, including Mount Everest, "
+        "the highest peak in the world. Kathmandu is the capital and largest city of Nepal. "
+        "Nepal is rich in cultural diversity, with over 100 ethnic groups and languages. "
+        "It is also the birthplace of Lord Buddha, making it a significant spiritual destination. "
+        "Nepal's economy is primarily based on agriculture, tourism, and remittances. "
+        "The country is famous for its natural beauty, trekking routes, wildlife, and warm hospitality."
     )
     print(info)
     speak(info)
@@ -73,10 +73,28 @@ def takeCommand():
             print("Timeout. No input detected.")
         except sr.UnknownValueError:
             print("Could not understand the audio.")
-            speak('Could not understand the audio. Try Again')
         except sr.RequestError as e:
             print(f"Request Error: {e}")
     return "None"
+def openWebsite(query):
+    """Opens the specified website based on the user's command."""
+    query = query.replace("open", "").strip()
+    if 'facebook' in query:
+        speak("Opening Facebook.")
+        webbrowser.open("https://www.facebook.com")
+    elif 'instagram' in query:
+        speak("Opening Instagram.")
+        webbrowser.open("https://www.instagram.com")
+    elif 'whatsapp' in query:
+        speak("Opening WhatsApp Web.")
+        webbrowser.open("https://web.whatsapp.com")
+    elif 'youtube' in query:
+        speak("Opening YouTube.")
+        webbrowser.open("https://www.youtube.com")
+    else:
+        # Open the website the user specified if it's not a predefined one
+        speak(f"Opening {query}.")
+        webbrowser.open(f"https://{query}.com")
 
 def tellJoke():
     """Tells a random joke."""
@@ -88,10 +106,9 @@ def searchGoogle(query):
     """Searches Google for the given query."""
     query = query.replace("search", "").strip()
     webbrowser.open(f"https://www.google.com/search?q={query}")
-    speak('Search Successfully Completed')
+
 def playMusic():
     """Plays a music file from a specified directory."""
-    speak('Playing Music')
     music_file = r"C:\\Users\\acer\\Downloads\\One Direction - Drag Me Down Lyrical status #shorts.mp3"  # Specify your file path
     try:
         if os.path.exists(music_file):
@@ -101,6 +118,19 @@ def playMusic():
     except Exception as e:
         print(f"Error: {e}")
         speak("An error occurred while trying to play the music.")
+
+
+def playNationalAnthem():
+    """Plays a music file from a specified directory."""
+    national_file = r"C:\Users\acer\Downloads\_Sayaun Thunga Phool Ka_ - Nepal National anthem Nepali & English lyrics.mp3"
+    try:
+        if os.path.exists(national_file):
+            os.startfile(national_file)
+        else:
+            speak("Sorry, the specified anthem file does not exist.")
+    except Exception as e:
+        print(f"Error: {e}")
+        speak("An error occurred while trying to play the anthem.")
 
 def aboutJapan():
     """Provides information about Japan."""
@@ -213,6 +243,9 @@ if __name__ == "__main__":
 
         elif 'play music' in query:
             playMusic()
+        
+        elif 'play national anthem' in query:
+            playNationalAnthem()
 
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
@@ -249,3 +282,5 @@ if __name__ == "__main__":
         elif 'exit' in query or 'quit' in query:
             speak("Goodbye! Have a great day.")
             break
+        elif 'open' in query:
+            openWebsite(query)
