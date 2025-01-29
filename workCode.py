@@ -9,17 +9,37 @@ import requests
 import os
 import smtplib
 
-# Initialize Text-to-Speech engine
-engine = pyttsx3.init('sapi5')
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[0].id)
-engine.setProperty('rate', 190)  # Set speaking rate
-engine.setProperty('volume', 1.0)  # Set volume level
+# # Initialize Text-to-Speech engine
+# engine = pyttsx3.init('sapi5')
+# voices = engine.getProperty('voices')
+# engine.setProperty('voice', voices[0].id)
+# engine.setProperty('rate', 190)  # Set speaking rate
+# engine.setProperty('volume', 1.0)  # Set volume level
 
-def speak(audio):
-    """Converts text to speech."""
-    engine.say(audio)
-    engine.runAndWait()
+# def speak(audio):
+#     """Converts text to speech."""
+#     engine.say(audio)
+#     engine.runAndWait()
+
+
+# Initialize Text-to-Speech engine
+try:
+    engine = pyttsx3.init('sapi5')  # Try initializing with 'sapi5'
+    voices = engine.getProperty('voices')  # Get available voices
+    engine.setProperty('voice', voices[0].id)  # Set the voice to the first available one
+    engine.setProperty('rate', 190)  # Set speaking rate
+    engine.setProperty('volume', 1.0)  # Set volume level
+
+    def speak(audio):
+        """Converts text to speech."""
+        engine.say(audio)
+        engine.runAndWait()
+
+    # Test speaking
+    speak("Hello, Jarvis is ready to assist you!")
+
+except Exception as e:
+    print("Error initializing speech engine: ", e)
 
 def aboutNepal():
     """Provides information about Nepal."""
@@ -35,6 +55,106 @@ def aboutNepal():
     )
     print(info)
     speak(info)
+# def speak(text):
+#     print(text)  # Replace this with actual text-to-speech functionality if needed
+
+def speed_of_light():
+    speak("The speed of light in a vacuum is approximately 299,792,458 meters per second.")
+
+def states_of_matter():
+    speak("The three states of matter are solid, liquid, and gas.")
+
+def discovered_gravity():
+    speak("Sir Isaac Newton discovered gravity.")
+
+def chemical_formula_water():
+    speak("The chemical formula of water is H2O.")
+
+def define_energy():
+    speak("Energy is the capacity to do work. It exists in various forms such as kinetic, potential, thermal, and more.")
+
+
+
+def inventor_of_telephone():
+    speak("The telephone was invented by Alexander Graham Bell in 1876.")
+
+def capital_of_france():
+    speak("The capital of France is Paris.")
+
+def first_president_of_india():
+    speak("The first president of India was Dr. Rajendra Prasad.")
+
+def tallest_building_in_the_world():
+    speak("The tallest building in the world is the Burj Khalifa in Dubai, standing at 828 meters.")
+
+def human_body_temperature():
+    speak("The normal human body temperature is around 37°C or 98.6°F.")
+
+def longest_river_in_the_world():
+    speak("The longest river in the world is the Nile River, flowing for about 6,650 kilometers.")
+
+def first_man_on_the_moon():
+    speak("Neil Armstrong was the first man to walk on the Moon in 1969.")
+
+def largest_continent():
+    speak("Asia is the largest continent in the world by both area and population.")
+
+def largest_ocean():
+    speak("The Pacific Ocean is the largest ocean on Earth.")
+
+def deepest_ocean_point():
+    speak("The Mariana Trench is the deepest point in the world's oceans, reaching a depth of about 36,000 feet.")
+
+def first_world_war():
+    speak("The First World War, also known as World War I, occurred from 1914 to 1918.")
+
+def first_man_in_space():
+    speak("Yuri Gagarin was the first human to journey into space in 1961.")
+
+def chemical_symbol_for_oxygen():
+    speak("The chemical symbol for oxygen is O.")
+
+def highest_waterfall_in_the_world():
+    speak("The highest waterfall in the world is Angel Falls in Venezuela, with a height of 979 meters.")
+
+def planet_with_most_moons():
+    speak("Jupiter has the most moons of any planet in our solar system, with over 80 moons.")
+
+def who_is_the_father_of_computing():
+    speak("Charles Babbage is known as the father of computing.")
+
+def largest_desert_in_the_world():
+    speak("The largest desert in the world is the Antarctic Desert, covering over 14 million square kilometers.")
+
+def inventor_of_light_bulb():
+    speak("Thomas Edison is credited with inventing the light bulb in 1879.")
+
+def president_of_nepal():
+    speak("As of 2024, the current president of Nepal is Ram Chandra Poudel.")
+
+def capital_of_koshi():
+    speak("The capital of Koshi Province is Biratnagar.")
+
+def president_of_usa():
+    speak("As of 2024, the current president of the USA is Joe Biden.")
+
+def height_of_everest():
+    speak("Mount Everest is 8,848.86 meters (29,031.7 feet) tall.")
+
+def who_created_you():
+    speak("The students of Sundarbatika Academy created me.")
+
+def where_is_sundarbatika():
+    speak("Sundarbatika Academy is located in Sundarharaincha 7, Gothgaun, Morang.")
+
+def principal_of_sundarbatika():
+    speak("The principal of Sundarbatika Academy is Binod Phuyal.")
+
+def slogan_of_sundarbatika():
+    speak("Our motto and mission; standard and quality education.")
+
+def teachers_in_sundarbatika():
+    speak("There are 23 teachers and staff in Sundarbatika Academy.")
 
 def aboutRajey():
     """Provides information about Nepal."""
@@ -167,25 +287,17 @@ def aboutJapan():
     )
     print(info)
     speak(info)
-
-def getWeather(city):
-    """Fetches and speaks the weather information for the specified city."""
-    api_key = "your_api_key"  # Replace with your OpenWeatherMap API key
-    base_url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
-    try:
-        response = requests.get(base_url)
-        response.raise_for_status()
-        data = response.json()
-
-        if data["cod"] == 200:
-            weather_desc = data["weather"][0]["description"]
-            temp = data["main"]["temp"]
-            speak(f"The weather in {city} is {weather_desc} with a temperature of {temp} degrees Celsius.")
-        else:
-            speak("Sorry, I couldn't find the weather details.")
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching weather: {e}")
-        speak("An error occurred while fetching the weather details.")
+def aboutJapan():
+ 
+    info = (
+       """
+    Japan, also known as Nippon or Nihon, is an island nation in East Asia. 
+    It is located in the Pacific Ocean, bordered by the Sea of Japan to the west, and is near China, North Korea, South Korea, and Russia. 
+    Japan is famous for its rich cultural heritage, advanced technology, and breathtaking natural landscapes.
+        """
+    )
+    print(info)
+    speak(info)
 
 def triviaQuiz():
     """Asks the user a random trivia question."""
@@ -269,9 +381,6 @@ if __name__ == "__main__":
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}.")
 
-        elif 'weather in' in query:
-            city = query.replace("weather in", "").strip()
-            getWeather(city)
 
         elif 'question' in query:
             triviaQuiz()
@@ -294,8 +403,89 @@ if __name__ == "__main__":
         elif 'fact' in query:
             randomFact()
 
+        elif 'france' in query:
+            capital_of_france()
+
+        elif 'india' in query:
+            first_president_of_india()
+
+        elif 'fact' in query:
+            randomFact()
+
+        elif 'building' in query:
+            tallest_building_in_the_world()
+
+        elif 'body' in query:
+            human_body_temperature()
+
+        elif 'longest' in query:
+            longest_river_in_the_world()
+
+        elif 'moon' in query:
+            first_man_on_the_moon()
+
+        elif 'continent' in query:
+            largest_continent()
+
+        elif 'war' in query:
+            first_world_war()
+
+        elif 'oxygen' in query:
+            chemical_symbol_for_oxygen()
+
+        elif 'desert' in query:
+            largest_desert_in_the_world()
+
+        elif 'ocean' in query:
+            largest_ocean()
+
+        elif 'father' in query:
+            who_is_the_father_of_computing()
+
+        elif 'bulb' in query:
+            inventor_of_light_bulb()
+
         elif 'japan' in query:
             aboutJapan()
+
+        elif 'speed' in query:
+            speed_of_light()
+
+        elif 'state of matter' in query:
+            states_of_matter()
+
+        elif 'gravity' in query:
+            discovered_gravity()
+
+        elif 'water' in query:
+            chemical_formula_water()
+
+        elif 'energy' in query:
+            define_energy()
+
+
+
+        elif 'president' in query:
+            president_of_nepal()
+
+        elif 'kosi' in query:
+            capital_of_koshi()
+
+        elif 'everest' in query:
+            height_of_everest()
+
+        elif 'created you' in query:
+            who_created_you()
+
+        elif 'academy' in query:
+            where_is_sundarbatika()
+
+        elif 'slogan' in query:
+            slogan_of_sundarbatika()
+
+        elif 'teacher' in query:
+            teachers_in_sundarbatika()
+
 
         elif 'motivate' in query or 'quote' in query:
             motivationalQuote()
